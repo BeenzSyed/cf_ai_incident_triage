@@ -9,6 +9,10 @@ An AI chat for on-call investigation. Paste a sanitized symptom or log, then add
 | LLM | Llama 3.3 70B via Workers AI |
 | State | One SQLite-backed Durable Object per incident |
 
+## Live demo
+
+[Open Incident Triage](https://cf-ai-incident-triage-eb2.pages.dev/). Cloudflare Pages serves the same browser assets and forwards `/api/chat` to the Worker over a service binding. The Worker still owns incident state and calls Workers AI.
+
 ## Run locally
 
 With Node.js 22 and a Cloudflare account:
@@ -20,6 +24,8 @@ npm run dev
 ```
 
 Open the URL printed by Wrangler. Static assets and Durable Object state run locally in development. Workers AI uses the Cloudflare account for real inference and may consume its quota. Deploy to your Cloudflare account with `npm run deploy`.
+
+To redeploy the Pages frontend after deploying the Worker, run `cd pages && npx wrangler pages deploy --branch main`. The Pages project and its service binding must be in the same Cloudflare account as the Worker.
 
 ## Demo the memory
 
