@@ -4,7 +4,7 @@ An AI chat for on-call investigation. Paste a sanitized symptom or log, then add
 
 | Assignment component | Implementation |
 | --- | --- |
-| Chat | Browser UI served by Workers Static Assets |
+| Chat | Browser UI served by Cloudflare Pages in the live demo |
 | Coordination | Worker validates and routes requests. A Durable Object loads history, calls the model, and saves each completed exchange. |
 | LLM | Llama 3.3 70B via Workers AI |
 | State | One SQLite-backed Durable Object per incident |
@@ -12,6 +12,28 @@ An AI chat for on-call investigation. Paste a sanitized symptom or log, then add
 ## Live demo
 
 [Open Incident Triage](https://cf-ai-incident-triage-eb2.pages.dev/). Cloudflare Pages serves the same browser assets and forwards `/api/chat` to the Worker over a service binding. The Worker still owns incident state and calls Workers AI.
+
+## How it works
+
+```mermaid
+flowchart LR
+    Browser["Browser chat<br/>Keeps the incident ID"]
+    Pages["Cloudflare Pages<br/>Serves the chat and forwards API requests"]
+    Worker["Cloudflare Worker<br/>Validates the ID and routes the request"]
+    Incident["Durable Object<br/>One per incident"]
+    Storage[("SQLite-backed storage<br/>Saved transcript")]
+    AI["Workers AI<br/>Llama 3.3"]
+
+    Browser <-->|"/api/chat with incident ID"| Pages
+    Pages <-->|"Service binding"| Worker
+    Worker <-->|"Route by incident ID"| Incident
+    Incident <-->|"Read and save transcript"| Storage
+    Incident <-->|"History + new message → reply"| AI
+```
+
+**Send an update.** The Durable Object reads the saved transcript, sends it to Llama with the new message, and saves the completed exchange before returning it to the browser.
+
+**Refresh the page.** The browser reuses its saved incident ID to fetch the transcript. This read skips the model call. The next update uses the restored history as context.
 
 ## Run locally
 

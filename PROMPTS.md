@@ -44,3 +44,7 @@ User prompts sent to Codex for this project, in order. Keep adding new build and
 > Can you do a final review of the GitHub repo and live demo against the Cloudflare assignment requirements before I submit?
 >
 > I also want you to walk me through how to use this Incident Triage that we created.
+
+## 7. README architecture diagram
+
+> One last thing before I submit this. I want you to create a diagram explaining how this works and put it in the README
