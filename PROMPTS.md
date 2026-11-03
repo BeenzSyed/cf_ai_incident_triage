@@ -34,3 +34,7 @@ User prompts sent to Codex for this project, in order. Keep adding new build and
 ## 4. Continue after Wrangler authorization
 
 > Go ahead and do the next steps and then explain to me what you did step by step
+
+## 5. Fix and verify the live deployment
+
+> Can you fix the Cloudflare HTTPS and Workers AI errors, then verify the live chat remembers the incident after a refresh? Update PROMPTS.md and push any fixes to GitHub.
