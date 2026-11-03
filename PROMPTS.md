@@ -38,3 +38,9 @@ User prompts sent to Codex for this project, in order. Keep adding new build and
 ## 5. Fix and verify the live deployment
 
 > Can you fix the Cloudflare HTTPS and Workers AI errors, then verify the live chat remembers the incident after a refresh? Update PROMPTS.md and push any fixes to GitHub.
+
+## 6. Final assignment review and walkthrough
+
+> Can you do a final review of the GitHub repo and live demo against the Cloudflare assignment requirements before I submit?
+>
+> I also want you to walk me through how to use this Incident Triage that we created.
