@@ -1,0 +1,1 @@
+{"name":"cf-ai-incident-triage","private":true,"type":"module","scripts":{"dev":"wrangler dev","deploy":"wrangler deploy","check":"node --check worker.js && node --check public/chat.js"},"devDependencies":{"wrangler":"^4.0.0"}}

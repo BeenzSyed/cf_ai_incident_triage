@@ -1,0 +1,11 @@
+{
+  "name": "cf-ai-incident-triage",
+  "main": "worker.js",
+  "compatibility_date": "2026-11-03",
+  "assets": { "directory": "./public" },
+  "ai": { "binding": "AI" },
+  "durable_objects": {
+    "bindings": [{ "name": "INCIDENTS", "class_name": "Incident" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Incident"] }]
+}

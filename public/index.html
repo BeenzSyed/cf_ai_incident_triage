@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Incident Triage</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #f6f5f0; color: #25221e; font: 1rem/1.55 system-ui, sans-serif; }
+  main { max-width: 48rem; margin: auto; padding: 2rem 1rem; }
+  header, form, article { background: white; border: 1px solid #dedbd3; border-radius: 12px; padding: 1rem; }
+  h1, p { margin: 0 0 .6rem; }
+  header p:last-child, article p:last-child { margin: 0; }
+  .label { color: #9d3b09; font-weight: 700; }
+  #messages { display: grid; gap: .75rem; margin: 1rem 0; }
+  article p { white-space: pre-wrap; overflow-wrap: anywhere; }
+  article.user { background: #fff2e7; }
+  form { display: grid; gap: .65rem; }
+  textarea { width: 100%; min-height: 6rem; padding: .65rem; font: inherit; }
+  button { width: fit-content; padding: .5rem .85rem; font: inherit; border-radius: 7px; border: 1px solid #9d3b09; background: white; color: #9d3b09; cursor: pointer; }
+  button[type=submit] { background: #9d3b09; color: white; }
+  button:disabled { opacity: .5; cursor: wait; }
+  #status { min-height: 1.6em; margin-top: .5rem; }
+</style>
+<main>
+  <header>
+    <p class="label">ON-CALL WORKBENCH</p>
+    <h1>Incident Triage</h1>
+    <p>Share a sanitized symptom or log. Add what you learn as you investigate. This browser can reopen the same incident after a refresh.</p>
+    <button id="new" type="button">Start new incident</button>
+  </header>
+  <section id="messages" aria-label="Incident conversation" role="log"></section>
+  <form>
+    <label for="message">Incident update</label>
+    <textarea id="message" required maxlength="4000" placeholder="Example: Checkout started returning 502s after the 14:20 deploy."></textarea>
+    <button type="submit">Send update</button>
+  </form>
+  <p id="status" role="status"></p>
+</main>
+<script type="module" src="/chat.js"></script>
+</html>
